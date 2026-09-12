@@ -146,9 +146,24 @@ function Inversion() {
         type="button"
         onClick={() => setFlipped((v) => !v)}
         aria-pressed={flipped}
-        className="mt-7 inline-flex items-center gap-2 rounded-xl border border-terracotta/60 bg-terracotta/10 px-5 py-2.5 text-sm font-medium text-terracotta transition-colors duration-300 hover:bg-terracotta/20"
+        className={`relative isolate mt-7 inline-flex items-center gap-2 overflow-hidden rounded-xl border border-terracotta/60 bg-terracotta/10 px-5 py-2.5 text-sm font-medium text-terracotta transition-colors duration-300 hover:bg-terracotta/20 ${
+          flipped ? '' : 'hint'
+        }`}
       >
-        <ArrowLeftRight size={15} />
+        {/* Lumina care trece dreapta → stânga. Dispare după apăsare. */}
+        {!flipped && (
+          <>
+            <span
+              aria-hidden="true"
+              className="hint-sweep pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(100deg,transparent_30%,rgba(241,231,229,0.3)_50%,transparent_70%)]"
+            />
+            <span
+              aria-hidden="true"
+              className="hint-ring pointer-events-none absolute inset-0 -z-10 rounded-xl border border-terracotta"
+            />
+          </>
+        )}
+        <ArrowLeftRight size={15} className={flipped ? '' : 'hint-icon'} />
         {flipped ? INVERSION.reset : INVERSION.action}
       </button>
     </div>

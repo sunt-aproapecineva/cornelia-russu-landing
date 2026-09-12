@@ -85,6 +85,56 @@ body {
 }
 .reveal.is-in { opacity: 1; transform: none; }
 
+/* ── Butonul de răsturnare ─────────────────────────────────────────
+   Animația poartă instrucțiunea, nu doar atrage atenția: lumina trece
+   dreapta → stânga, adică exact direcția pe care o cere textul.
+   Un singur sweep la 4,2s, cu pauză lungă între treceri — indiciu, nu
+   sirenă. Se oprește la hover (omul l-a găsit deja) și după apăsare
+   (indiciul și-a făcut treaba). */
+@keyframes hint-sweep {
+  0%   { transform: translateX(150%); opacity: 0; }
+  6%   { opacity: 1; }
+  32%  { opacity: 1; }
+  38%  { transform: translateX(-150%); opacity: 0; }
+  100% { transform: translateX(-150%); opacity: 0; }
+}
+
+/* Săgețile se împing scurt spre stânga, în fază cu lumina. */
+@keyframes hint-nudge {
+  0%, 38%, 100% { transform: translateX(0); }
+  19%           { transform: translateX(-3px); }
+}
+
+/* Inelul se aprinde odată cu lumina — asta e ce citește ochiul drept
+   „e un buton", nu doar „ceva lucește". Doar opacitate. */
+@keyframes hint-ring {
+  0%, 38%, 100% { opacity: 0; }
+  19%           { opacity: 1; }
+}
+
+@keyframes hint-breathe {
+  from { opacity: 0.72; }
+  to   { opacity: 1; }
+}
+
+.hint-sweep { animation: hint-sweep 4.2s linear infinite; }
+.hint-icon  { animation: hint-nudge 4.2s cubic-bezier(0.77, 0, 0.175, 1) infinite; }
+.hint-ring  { animation: hint-ring 4.2s cubic-bezier(0.77, 0, 0.175, 1) infinite; }
+
+@media (hover: hover) and (pointer: fine) {
+  .hint:hover .hint-sweep,
+  .hint:hover .hint-ring,
+  .hint:hover .hint-icon { animation-play-state: paused; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hint-sweep,
+  .hint-ring  { display: none; }
+  .hint-icon  { animation: none; }
+  /* Fără deplasare, dar nu zero: o respirație lentă de opacitate. */
+  .hint       { animation: hint-breathe 3s ease-in-out infinite alternate; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .anim-fade-in, .anim-rise-in, .anim-fade-up, .anim-line {
