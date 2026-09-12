@@ -109,8 +109,11 @@ export const INVERSION = {
     ['Rușinea', 'vocea'],
   ] as [string, string][],
   verb: 'ucide',
-  action: 'Acum citește de la dreapta la stânga',
-  reset: 'Citește înapoi',
+  /* Butonul nu-ți cere să citești altfel — el întoarce lista în locul
+     tău. Deci eticheta numește acțiunea, nu instrucțiunea. E și replica
+     din reel-ul original („Acum întoarce-le."), și încape pe un rând. */
+  action: 'Acum întoarce-le',
+  reset: 'Pune-le la loc',
 }
 
 /* ── 6. CORNELIA ─────────────────────────────────────────────────

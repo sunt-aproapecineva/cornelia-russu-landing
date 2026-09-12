@@ -142,30 +142,47 @@ function Inversion() {
         })}
       </ul>
 
-      <button
-        type="button"
-        onClick={() => setFlipped((v) => !v)}
-        aria-pressed={flipped}
-        className={`relative isolate mt-7 inline-flex items-center gap-2 overflow-hidden rounded-xl border border-terracotta/60 bg-terracotta/10 px-5 py-2.5 text-sm font-medium text-terracotta transition-colors duration-300 hover:bg-terracotta/20 ${
-          flipped ? '' : 'hint'
-        }`}
-      >
-        {/* Lumina care trece dreapta → stânga. Dispare după apăsare. */}
-        {!flipped && (
-          <>
-            <span
-              aria-hidden="true"
-              className="hint-sweep pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(100deg,transparent_30%,rgba(241,231,229,0.3)_50%,transparent_70%)]"
-            />
-            <span
-              aria-hidden="true"
-              className="hint-ring pointer-events-none absolute inset-0 -z-10 rounded-xl border border-terracotta"
-            />
-          </>
-        )}
-        <ArrowLeftRight size={15} className={flipped ? '' : 'hint-icon'} />
-        {flipped ? INVERSION.reset : INVERSION.action}
-      </button>
+      {/* Pastilă compactă, centrată sub listă — aceeași gramatică de buton
+          ca în secțiunile crem (disc cu iconiță la stânga, etichetă la
+          dreapta), doar inversată pe fundal închis. Teracota rămâne doar
+          în disc și în inelul care se aprinde, nu în tot butonul. */}
+      <div className="mt-9 flex justify-center">
+        <button
+          type="button"
+          onClick={() => setFlipped((v) => !v)}
+          aria-pressed={flipped}
+          className={`group relative isolate flex items-center gap-3 overflow-hidden rounded-full border border-cream/20 bg-cream/[0.06] py-1.5 pl-1.5 pr-6 text-cream transition-[background-color,transform] duration-150 hover:bg-cream/[0.12] active:scale-[0.97] ${
+            flipped ? '' : 'hint'
+          }`}
+        >
+          {/* Lumina trece dreapta → stânga, adică direcția răsturnării.
+              Dispare după apăsare: indiciul și-a făcut treaba. */}
+          {!flipped && (
+            <>
+              <span
+                aria-hidden="true"
+                className="hint-sweep pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(100deg,transparent_30%,rgba(241,231,229,0.22)_50%,transparent_70%)]"
+              />
+              <span
+                aria-hidden="true"
+                className="hint-ring pointer-events-none absolute inset-0 -z-10 rounded-full border border-terracotta"
+              />
+            </>
+          )}
+
+          <span
+            className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
+              flipped ? 'bg-cream/15 text-cream' : 'bg-terracotta text-cream'
+            }`}
+          >
+            <ArrowLeftRight size={16} className={flipped ? '' : 'hint-icon'} />
+          </span>
+
+          <span className="whitespace-nowrap text-sm font-medium">
+            {flipped ? INVERSION.reset : INVERSION.action}
+          </span>
+        </button>
+      </div>
     </div>
   )
 }
