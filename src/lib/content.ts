@@ -75,7 +75,7 @@ export const ARGUMENT = {
       title: 'Nu informația îți lipsea.',
       image: 'card-1',
       body: [
-        'Întâi am crezut că îmi lipsește informația. Apoi că îmi lipsesc strategiile. Nu era nici una, nici alta.',
+        'Întâi am crezut că îmi lipsește informația, apoi că îmi lipsesc strategiile. Nu era nici una, nici alta.',
       ],
       closer: 'Construiam o viață nouă cu o identitate croită pentru alta.',
     },
@@ -85,7 +85,7 @@ export const ARGUMENT = {
       title: 'Vâslești perfect.',
       image: 'card-2',
       body: [
-        'Ai văzut vreodată pe cineva vâslind într-o barcă legată de mal? Trage din toate puterile, se întinde frânghia și barca revine. Din afară pare că muncește cel mai mult dintre toți. Și chiar așa e.',
+        'Ai văzut vreodată pe cineva care vâslește într-o barcă legată de mal? Trage din toate puterile, se întinde frânghia și barca revine. Din afară pare că muncește cel mai mult dintre toți. Și chiar așa e.',
       ],
       closer: 'Nu vâsleai greșit. Doar că nimeni nu ți-a arătat frânghia.',
     },
@@ -122,10 +122,10 @@ export const BIO = {
   image: 'bio',
   body: [
     'Am făcut tot ce se cere: Dreptul, un an la Vilnius, master în Drept Internațional, apoi două companii cu capital străin. Traseul corect, executat corect. Și tot m-am blocat.',
-    'Vedeam oameni care depuneau același efort, uneori mai puțin, și obțineau cu totul alte rezultate. Nu aveam modele antreprenoriale și nici tiparele mentale necesare.',
+    'Vedeam oameni care munceau la fel ca mine, uneori mai puțin, și ajungeau mult mai departe. În familia mea nu era niciun om de afaceri, așa că n-aveam de unde să iau tiparele.',
   ],
   quote:
-    'Poți avea toate cunoștințele din lume. Dacă identitatea ta nu e compatibilă cu viața pe care încerci s-o construiești, vei reproduce aceleași rezultate.',
+    'Poți să știi absolut tot. Dacă identitatea ta nu se potrivește cu viața pe care o vrei, ajungi tot în același loc.',
   facts: [
     'Drept Internațional · master în Drepturile Omului',
     'Zece ani de studiu al identității și al sistemului nervos',
@@ -153,7 +153,7 @@ export const BOUNDARIES = {
 export const WAITLIST = {
   eyebrow: 'Primul pas',
   title: 'Nu e o înscriere. E o filtrare.',
-  sub: 'Ce dau mai jos e timpul meu, iar timpul meu nu se scalează.',
+  sub: 'Ce dau mai jos e timpul meu, iar timpul meu nu se înmulțește.',
   items: [
     {
       n: '01',
@@ -163,10 +163,10 @@ export const WAITLIST = {
     {
       n: '02',
       title: 'Audit personal',
-      text: 'Pașii concreți de după consultație: ce schimbi, în ce ordine, până devii femeia pentru care viața pe care o vrei e deja normalul ei.',
+      text: 'Pașii concreți de după consultație: ce schimbi și în ce ordine. Până când viața pe care o vrei devine normalul tău.',
     },
   ],
-  note: 'Gratuit, fără nicio obligație. Locurile sunt limitate pentru că sunt treizeci de minute reale.',
+  note: 'Gratuit, fără nicio obligație. Locurile sunt puține, pentru că sunt treizeci de minute adevărate.',
 }
 
 /* ── 9. FORMULAR ─────────────────────────────────────────────────
@@ -194,7 +194,10 @@ export const FORM = {
     ],
   },
   delay: {
-    label: 'De cât timp amâni?',
+    /* Întrebare alternativă, nu parțială: forțează o alegere și doare
+       mai tare. Cele patru variante se împart exact în cele două
+       jumătăți ale întrebării. */
+    label: 'Amâni de luni sau de ani?',
     options: ['Câteva luni', 'Un an', 'Doi-trei ani', 'Mai mult'],
   },
   tried: {
