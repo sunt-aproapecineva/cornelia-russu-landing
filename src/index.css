@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+/* ═══════════════════════════════════════════════════════════════
+   Brandbook Cornelia Russu
+   espresso #1D0E0A · crem #F1E7E5 · teracotă #DA6342
+   EB Garamond (serif, suflet) + Inter Tight (display) + Inter (corp)
+   ATENȚIE: Amiri, fontul din brandbook, NU conține Ș ș Ț ț (U+0218–021B),
+   deci nu poate culege română — toate diacriticele cădeau pe fallback.
+   EB Garamond acoperă complet româna și păstrează aceeași motivație
+   din deck: serif clasic, contrast rafinat, italice cu adevărat elegante.
+   Teracota e ACCENT: max 4 apariții pe toată pagina.
+═══════════════════════════════════════════════════════════════ */
+@theme {
+  --color-espresso: #1d0e0a;
+  --color-espresso-soft: #2a1712;
+  --color-cream: #f1e7e5;
+  --color-cream-light: #faf5f3;
+  --color-muted: #d9c7c3;
+  --color-muted-dark: #c4aeaa;
+  --color-terracotta: #da6342;
+
+  --font-display: 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-espresso);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-espresso);
+  color: var(--color-cream);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Deck-ul are tracking negativ apăsat pe titluri — îl reproducem. */
+.display {
+  font-family: var(--font-display);
+  letter-spacing: -0.035em;
+  font-weight: 500;
+}
+.display-tight {
+  font-family: var(--font-display);
+  letter-spacing: -0.055em;
+  font-weight: 500;
+}
+
+/* ── Marquee hero: două jumătăți identice, 0 → -50% ───────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee { animation: marquee 30s linear infinite; }
+
+/* ── Coregrafia de intrare (după referință) ───────────────────── */
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(4vh) scale(1.03); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes drawLine { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+
+.anim-fade-in { animation: fadeIn 1.2s ease-out both; }
+.anim-rise-in { animation: riseIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-fade-up { animation: fadeUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.anim-line    { animation: drawLine 1.1s cubic-bezier(0.76, 0, 0.24, 1) both; transform-origin: left; }
+
+/* ── Reveal la scroll ─────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .anim-fade-in, .anim-rise-in, .anim-fade-up, .anim-line {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+  .marquee { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
